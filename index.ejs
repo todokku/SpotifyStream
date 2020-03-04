@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="shortcut icon" href="icons/favicon.ico">
+        <link rel="apple-touch-icon" href="icons/favicon.ico" sizes="57x57">
+        <link rel="manifest" href="manifest.json">
+        <title>Spotify Stream</title>
+        <style>
+         * {
+             margin: 0;
+             padding: 0;
+             box-sizing: border-box;
+             -webkit-tap-highlight-color: rgba(0,0,0,0);
+             -webkit-user-select: none;
+             user-select: none;
+             font-family: 'Hiragino Kaku Gothic ProN','ヒラギノ角ゴ ProN W3',YuGothic,'Yu Gothic','Avenir','Calibri',sans-serif;
+         }
+         html, body {
+             height: 100%;
+         }
+         body {
+             background: rgb(45, 46, 51);
+             color: white;
+         }
+         .heading {
+             text-align: center;
+         }
+         .heading2 {
+             color: rgb(29, 185, 92);
+             font-size: 50px;
+             margin: 90px 0 40px 0;
+         }
+         img {
+             position: absolute;
+             margin: 20px 20px;
+             height: 160px;
+         }
+         dl {
+             height: 200px;
+             margin: 8px 10% 40px 10%;
+             background: rgb(60, 60, 60);
+             border: 1px solid rgb(96, 96, 96);
+             border-radius: 4px;
+         }
+         dt, dd {
+             padding-left: 220px;
+             margin-right: 20px;
+             text-overflow: ellipsis; 
+             white-space: nowrap;
+             overflow: hidden;
+         }
+         dt {
+             font-size: 50px;
+             margin-top: 20px;
+             margin-bottom: 10px;
+             font-weight: bold;
+         }
+         dd {
+             font-size: 23px;
+             padding-bottom: 3px;
+         }
+         .noDecorateLink {
+             color: white;
+             text-decoration: none;
+         }
+        </style>
+    </head>
+    <body>
+        <h1 class="heading" style="font-size: 70px; margin-top: 100px; letter-spacing: 4px;">Spotify Stream</h1>
+        <h3 class="heading" style="font-size: 25px; margin-top: 10px">of embokoir (<a href="https://github.com/embokoir/SpotifyStream" target="_blank" style="color: white;">Source Code)</a></h3>
+        <h2 class="heading heading2">Now Playing</h2>
+        <% if(isPlaying) { %>
+            <a class="noDecorateLink" href="<%- current.url %>" target="_blank">
+                <dl>
+                    <img src="<%- current.thumbUrl %>">
+                    <dt><%- current.track %></dt>
+                    <dd><%- current.artist %></dd>
+                    <dd><%- current.album %></dd>
+                </dl>
+            </a>
+        <% } else { %>
+        <dl>
+            <p style="text-align: center; font-size: 50px; padding-top: 60px;">No Track...</p>
+        </dl>
+        <% } %>
+        <h2 class="heading heading2">Recently Played</h2>
+        <% for (let item of recents) { %>
+            <a class="noDecorateLink" href="<%- item.url %>" target="_blank">
+                <dl>
+                    <img src="<%- item.thumbUrl %>">
+                    <dt><%- item.track %></dt>
+                    <dd><%- item.artist %></dd>
+                    <dd><%- item.album %></dd>
+                </dl>
+            </a>
+        <% } %>
+    </body>
+</html>
