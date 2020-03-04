@@ -5,6 +5,15 @@
         <link rel="shortcut icon" href="icons/favicon.ico">
         <link rel="apple-touch-icon" href="icons/favicon.ico" sizes="57x57">
         <link rel="manifest" href="manifest.json">
+        <script>
+         if ('serviceWorker' in navigator) {
+             navigator.serviceWorker.register("service-worker.js")
+                      .then(e => console.log('Service Worker Registered'))
+                      .catch(err => console.log('Service Worker Register Error'))
+         } else {
+             console.log('Your Browser does not support Service Worker')
+         }
+        </script>
         <title>Spotify Stream</title>
         <style>
          * {
