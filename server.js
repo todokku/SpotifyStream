@@ -26,7 +26,7 @@ app.get('/', async (req, res) => {
             artist: currentPlayer.item.artists.map(artist => artist.name).join(', '),
             album: currentPlayer.item.album.name,
             thumbUrl: await getAlbumThumbUrl(currentPlayer.item.album.id),
-            url: currentPlayer.context.external_urls.spotify
+            url: currentPlayer.item.external_urls.spotify
         },
         recents: await Promise.all(recentlyPlayed.items.map(async item => {
             return {
