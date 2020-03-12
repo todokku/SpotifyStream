@@ -42,6 +42,10 @@ app.get('/', async (req, res) => {
     res.render(__dirname + "/index.ejs", data)
 })
 
+app.get('/loading', async (req, res) => {
+    res.render(__dirname + '/loading.ejs')
+})
+
 app.listen(PORT)
 console.log(`Server running at ${PORT}`)
 

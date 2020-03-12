@@ -6,6 +6,7 @@
         <link rel="apple-touch-icon" href="icons/favicon.ico" sizes="57x57">
         <link rel="manifest" href="manifest.json">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+        <script src="https://rawgit.com/kimmobrunfeldt/progressbar.js/master/dist/progressbar.js"></script>
         <script>
          if ('serviceWorker' in navigator) {
              navigator.serviceWorker.register("service-worker.js")
@@ -77,12 +78,18 @@
          .fa-redo:hover {
              cursor: pointer;
          }
+         #progressbar {
+             margin: 0;
+             width: 100%;
+             height: 5px;
+         }
         </style>
     </head>
     <body>
+        <div id="progressbar"></div>
         <h1 class="heading" style="font-size: 70px; margin-top: 100px; letter-spacing: 4px;">Spotify Stream</h1>
         <h3 class="heading" style="font-size: 25px; margin-top: 10px">of embokoir (<a href="https://github.com/embokoir/SpotifyStream" target="_blank" style="color: white;">Source Code)</a></h3>
-        <h2 class="heading heading2">Now Playing <i class="fas fa-redo" style="color: gray;" type="button" onclick="window.location.reload()"></i></h2>
+        <h2 class="heading heading2">Now Playing <i class="fas fa-redo" style="color: gray;" type="button" onclick="window.location.pathname='loading'"></i></h2>
         <% if(isPlaying) { %>
             <a class="noDecorateLink" href="<%- current.url %>" target="_blank">
                 <dl>
@@ -108,5 +115,15 @@
                 </dl>
             </a>
         <% } %>
+        <script>
+         const bar = new ProgressBar.Line(progressbar, {
+             color: 'rgb(29, 185, 92)',
+             easing: 'easeInOut',
+             svgStyle: {width: '100%', height: '100%'}
+         })
+         bar.animate(1.0, {}, () => {
+             setTimeout(()=> bar.destroy(), 500)
+         })
+        </script>
     </body>
 </html>
