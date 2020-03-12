@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="shortcut icon" href="icons/favicon.ico">
+        <link rel="apple-touch-icon" href="icons/favicon.ico" sizes="57x57">
+        <link rel="manifest" href="manifest.json">
+        <script src="https://rawgit.com/kimmobrunfeldt/progressbar.js/master/dist/progressbar.js"></script>
+        <title>Spotify Stream</title>
+        <style>
+         * {
+             margin: 0;
+             padding: 0;
+             box-sizing: border-box;
+         }
+         html, body {
+             height: 100%;
+         }
+         body {
+             background: rgb(45, 46, 51);
+         }
+         .progress {
+             height: 15%;
+             width: 15%;
+             margin: 300px auto 0 auto;
+         }
+         .progress > svg {
+             height: 100%;
+             display: block;
+         }
+         @keyframes rotating {
+             from {
+                 transform: rotate(0deg);
+             }
+             to {
+                 transform: rotate(360deg);
+             }
+         }
+         .rotating {
+             animation: rotating 2s linear infinite;
+             transform-origin: 50% 50%;
+         }
+        </style>
+    </head>
+    <body>
+        <div class="rotating progress" id="circle"></div>
+    </body>
+    <script>
+     const circle = new ProgressBar.Circle('#circle', {
+         color: 'rgb(29, 185, 92)',
+         trailColor: '#eee',
+         strokeWidth: 15,
+         easing: 'easeInOut'
+     }).set(0.3)
+     window.location.pathname = ''
+    </script>
+</html>
